@@ -1,0 +1,150 @@
+<main class="main">
+    <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17"
+        style="background-image: url('assets/images/backgrounds/login-bg.jpg')">
+        <div class="container">
+            <div class="form-box">
+                <div class="form-tab">
+                    <ul class="nav nav-pills nav-fill" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" id="signin-tab-2" data-toggle="tab" routerLink="/login" role="tab"
+                                aria-controls="signin-2" aria-selected="false">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" id="register-tab-2" data-toggle="tab" routerLinkActive="Active"
+                                routerLink="/register" role="tab" aria-controls="register-2"
+                                aria-selected="true">Register</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
+
+
+                        </div><!-- .End .tab-pane -->
+                        <div class="tab-pane fade show active" id="register-2" role="tabpanel"
+                            aria-labelledby="register-tab-2">
+                            <form [formGroup]="registerForm" (ngSubmit)="submit()">
+                                <div>
+                                    <label for="singin-email-2">First Name</label>
+                                    <!-- <input [class.is-invalid]="registerForm.controls.fName.invalid&&registerForm.controls.fName.touched" type="text" class="form-control" formControlName="fName" id="singin-email-2" name="singin-fName" required>
+                                  <div *ngIf="registerForm.controls.fName.invalid&&registerForm.controls.fName.touched" class="alert alert-danger my-2">First Name Not Valid</div> -->
+                                    <input
+                                        [class.is-valid]="registerForm.controls['displayname'].valid &&!registerForm.controls['displayname'].pristine"
+                                        [class.is-invalid]="registerForm.controls['displayname'].invalid &&!registerForm.controls['displayname'].pristine&&registerForm.controls['displayname'].touched"
+                                        type="text" class="form-control" formControlName="displayname"
+                                        id="singin-email-2" name="singin-fName" required>
+                                    <div *ngIf="
+                                              registerForm.controls['displayname'].invalid &&
+                                               registerForm.controls['displayname'].touched
+                                            ">
+                                        <div *ngIf="registerForm.controls['displayname'].errors?.['pattern']"
+                                            class="alert alert-danger">
+                                            Enter Valid Name
+                                        </div>
+                                        <div *ngIf="registerForm.controls['displayname'].errors?.['required']"
+                                            class="alert alert-danger">
+                                            Name is Required
+                                        </div>
+                                    </div>
+                                </div><!-- End .form-group -->
+
+
+
+                          
+                                <div >
+                                    <label for="register-email-2">Email</label>
+                                    <input [class.is-valid]="registerForm.controls['email'].valid &&!registerForm.controls['email'].pristine"
+                                    [class.is-invalid]="registerForm.controls['email'].invalid &&!registerForm.controls['email'].pristine&&registerForm.controls['email'].touched" type="email" class="form-control" formControlName="email"
+                                        id="register-email-2" name="register-email" required>
+                                        <div *ngIf="
+                                        registerForm.controls['email'].invalid &&
+                                         registerForm.controls['email'].touched
+                                      ">
+                                  <div *ngIf="registerForm.controls['email'].errors?.['email']"
+                                      class="alert alert-danger">
+                                      Enter Valid Email
+                                  </div>
+                                  <div *ngIf="registerForm.controls['email'].errors?.['required']"
+                                      class="alert alert-danger">
+                                      Email is required
+                                  </div>
+                              </div>
+                                    <!-- <div class="alert alert-danger my-2">Email Not Valid</div> -->
+                                </div><!-- End .form-group -->
+
+                                <div class="mb-3">
+                                    <label for="register-password-2">Password</label>
+                                    <input  [class.is-valid]="registerForm.controls['password'].valid &&!registerForm.controls['password'].pristine"
+                                    [class.is-invalid]="registerForm.controls['password'].invalid &&!registerForm.controls['password'].pristine&&registerForm.controls['password'].touched" type="password" class="form-control" formControlName="password"
+                                        id="register-password-2" name="register-password" required>
+                                        <div *ngIf="
+                                        registerForm.controls['password'].invalid &&
+                                         registerForm.controls['password'].touched
+                                      ">
+                                  <div *ngIf="registerForm.controls['password'].errors?.['minLength']"
+                                      class="alert alert-danger">
+                                      Enter Valid Password
+                                  </div>
+                                  <div *ngIf="registerForm.controls['password'].errors?.['required']"
+                                      class="alert alert-danger">
+                                      Password is required
+                                  </div>
+                              </div>
+                                   
+                                </div><!-- End .form-group -->
+
+                           
+                                <div class="mb-3">
+                                    <label>Choose gender</label><br>
+                                    <label class="radio-inline">
+                                        <input  [class.is-valid]="registerForm.controls['gender'].valid &&!registerForm.controls['gender'].pristine"
+                                        [class.is-invalid]="registerForm.controls['gender'].invalid &&!registerForm.controls['gender'].pristine&&registerForm.controls['gender'].touched" type="radio" value="Male" formControlName="gender">
+                                        <span>Male</span>
+                                    </label>
+                                    <br>
+                                    <label class="radio-inline">
+                                        <input type="radio" value="Female" formControlName="gender">
+                                        <span>Female</span>
+                                    </label>
+                                    <div *ngIf="
+                                    registerForm.controls['gender'].invalid &&
+                                     registerForm.controls['gender'].touched
+                                  ">
+                             
+                              <div *ngIf="registerForm.controls['gender'].errors?.['required']"
+                                  class="alert alert-danger">
+                                  Gender is required
+                              </div>
+                          </div>
+
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <input type="file" accept="image/*" formControlName="image" (change)="imgePreview()"
+                                        placeholder="image">
+                                </div>
+                                <div class="image-wrapper mt-1">
+                                    <img src="{{registerForm.value.image}}" alt="" width="400" height="100">
+                                </div>
+
+
+                                <div class="form-footer">
+                                    <button type="submit" class="btn btn-outline-primary-2">
+                                        <span>SIGN UP</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </button>
+
+                                    <!-- <div class="custom-control custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
+                                      <label class="custom-control-label" for="register-policy-2">I agree to the <a href="#">privacy policy</a> *</label>
+                                  </div> -->
+                                </div>
+                            </form>
+                           
+                        </div><!-- .End .tab-pane -->
+                    </div><!-- End .tab-content -->
+                </div><!-- End .form-tab -->
+            </div><!-- End .form-box -->
+        </div><!-- End .container -->
+    </div><!-- End .login-page section-bg -->
+</main><!-- End .main -->

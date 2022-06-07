@@ -1,0 +1,33 @@
+a{
+  cursor: pointer;
+}
+
+h1{
+  font-family: 'flamingregular', serif;
+  font-weight: 400;
+  font-size: 14rem;
+
+    line-height: .55;
+    margin-bottom: 4.3rem
+}
+
+.intro-text {
+  margin-bottom: 3.6rem;
+  font-size: 3rem;
+  font-weight: 300;
+    letter-spacing: -.025em
+}
+
+.intro-subtitle {
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: -.025em;
+}
+
+.intro-content .btn{
+color:white
+}
+.intro-content .btn:hover{
+  background-color: white;
+  color: #c66;
+}

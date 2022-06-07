@@ -1,0 +1,16 @@
+.product-details-action .btn-cart:hover  {
+    border-color: #c66;
+    background-color: #c66;
+    color: white;
+  
+  }
+  
+  
+  .customBtn{
+    padding: 1rem 1.5rem;
+      max-width: 198px;
+      color: #c66;
+      background-color: white;
+      border: 0.1rem solid #c66;
+  
+  }

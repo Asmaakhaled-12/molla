@@ -1,0 +1,120 @@
+<div class="wrapper">
+
+    <!-- <h2 mat-dialog-title class="text-cente">Add New Product</h2> -->
+
+  <div mat-dialog-content>
+     <form [formGroup]="productForm">
+      <!-- <mat-form-field appearance="outline">
+        <mat-label>Id</mat-label>
+        <input formControlName="id" matInput placeholder="id">
+        <mat-hint color="warn" [class.valid]="">Id is required pease enter value</mat-hint>
+      </mat-form-field> -->
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input  formControlName="title" matInput placeholder="title">
+        <mat-hint
+        *ngIf="productForm.controls['title'].invalid && productForm.controls['title'].touched">
+        <p class="text-red" *ngIf="productForm.controls['title'].errors?.['required']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+           first name is required
+        </p>
+        <p class="text-red" *ngIf="productForm.controls['title'].errors?.['pattern']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+          Enter Valid title
+        </p>
+      </mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input formControlName="price" matInput placeholder="price">
+        <mat-hint
+        *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched" class="m-2">
+        <p class="text-red" *ngIf="productForm.controls['price'].errors?.['required']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+           price is required
+        </p>
+        <p class="text-red" *ngIf="productForm.controls['price'].errors?.['pattern']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+          Enter Valid price
+        </p>
+      </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Quantity</mat-label>
+        <input formControlName="quantity" matInput placeholder="quantity">
+        <mat-hint
+        *ngIf="productForm.controls['quantity'].invalid && productForm.controls['quantity'].touched">
+        <p class="text-red" *ngIf="productForm.controls['quantity'].errors?.['required']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+          Quantity is required
+        </p>
+        <p class="text-red" *ngIf="productForm.controls['quantity'].errors?.['pattern']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+          Enter Valid quantity
+        </p>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Offer</mat-label>
+        <input formControlName="offer" matInput placeholder="offer">
+        <!-- <mat-hint
+        *ngIf="productForm.controls['offer'].invalid && productForm.controls['offer'].touched" class="m-2">
+        <p class="text-red" *ngIf="productForm.controls['offer'].errors?.['required']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+          offer is required
+        </p>
+        <p class="text-red" *ngIf="productForm.controls['offer'].errors?.['pattern']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+          Enter Valid offer
+        </p>
+      </mat-hint> -->
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+      <mat-select  formControlName="category"   placeholder="category">
+        <mat-option *ngFor="let cat of categoryList"  [value]="cat" placeholder="category">{{cat.title}}</mat-option>
+      </mat-select>
+      <mat-hint
+      *ngIf="productForm.controls['category'].invalid && productForm.controls['category'].touched">
+      <p class="text-red" *ngIf="productForm.controls['category'].errors?.['required']">
+        <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+        Category is required
+      </p>
+      </mat-hint>
+    </mat-form-field>
+
+
+    <!-- <select [ngModel]="selectedValue" (hange)="onChange($event)" name="sel2">
+      <option [value]="category.id" *ngFor="let category of categoryList">{{category.name}}</option>
+  </select>
+     -->
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput placeholder="description"> </textarea>
+        <mat-hint
+        *ngIf="productForm.controls['description'].invalid && productForm.controls['description'].touched">
+        <p class="text-red" *ngIf="productForm.controls['description'].errors?.['required']">
+          <mat-icon class="text-red mr-1" style="vertical-align: middle">error</mat-icon>
+          Description is required
+        </p>
+        </mat-hint>
+      </mat-form-field>
+
+
+        <div>
+        <input type="file" accept="image/*" formControlName="image" (change)="imgePreview()"  placeholder="image">
+       </div>
+       <div class="image-wrapper mt-1">
+        <img src="{{productForm.value.image}}" alt="" width="400" height="250">
+       </div>
+     </form>
+
+  </div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="primary" (click)="addProduct()">{{actionBtn}}</button>
+<button  mat-raised-button class="mainBackColor" mat-dialog-close>Close</button>
+</div>
+</div>

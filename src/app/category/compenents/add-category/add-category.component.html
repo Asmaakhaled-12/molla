@@ -1,0 +1,55 @@
+
+  <p mat-dialog-title class="">
+    <mat-icon class="text-danger">post_add</mat-icon> 
+    Add New Category</p>
+  <form class="my-4" [formGroup]="addNewCategoryForm" (ngSubmit)="add()">
+    <div class="form-group my-5">
+      <label>Title</label>
+      <input #titleInput class="form-control"  formControlName="title" />
+      <div
+        *ngIf="
+          addNewCategoryForm.controls['title'].invalid &&
+          addNewCategoryForm.controls['title'].touched
+        "
+      >
+        <div
+          *ngIf="addNewCategoryForm.controls['title'].errors?.['pattern']"
+          class="alert alert-danger"
+        >
+          Enter Valid Cateogry Title
+        </div>
+        <div
+          *ngIf="addNewCategoryForm.controls['title'].errors?.['required']"
+          class="alert alert-danger"
+        >
+          Category Title is Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group my-5">
+      <label>Description</label>
+      <input #descriptionInput class="form-control" formControlName="description" />
+      <div *ngIf="
+       addNewCategoryForm.controls['description'].invalid &&
+       addNewCategoryForm.controls['description'].touched">
+        <div
+          *ngIf="addNewCategoryForm.controls['description'].errors?.['pattern']"
+          class="alert alert-danger"
+        >
+          Enter Valid Cateogry Discription
+        </div>
+        <div
+          *ngIf="addNewCategoryForm.controls['description'].errors?.['required']"
+          class="alert alert-danger"
+        >
+          Category Discripton is Required
+        </div>
+      </div>
+    </div>
+    <div class="mr-auto">
+      <button [disabled]="addNewCategoryForm.invalid" mat-raised-button [mat-dialog-close]="addNewCategoryForm.value" class="mr-3 bg-info text-white">Add</button>
+      <button mat-raised-button mat-dialog-close  class="mb-3 bg-danger text-white">Close</button>
+
+    </div>
+  </form>
+

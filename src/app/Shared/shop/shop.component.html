@@ -1,0 +1,90 @@
+<div class="container mt-10 ">
+
+  <div class="row pt-3">
+    <div class="item header-search-visible">
+      <div class="col-8 m-auto header-search-wrapper  search-wrapper-wide ">
+        <input type="search" class="form-control " style="border-top-left-radius:3px;border-bottom-left-radius: 3px;" [(ngModel)]="searchTerm" (keyup)="search($event)" name="q" id="q"
+        placeholder="Search product ..." required />
+      <button class="btn btn-primary" style="min-width: 20px;height:100%; border-top-right-radius:3px;border-bottom-right-radius:3px" type="submit">
+        <i class="icon-search"></i>
+      </button>
+
+      </div>
+      <div class="col-12 mt-2">
+        <ul class="nav nav-pills  mb-5 justify-content-center align-items-end " role="tablist">
+          <li class="nav-item ">
+            <a (click)="getAllProducts()" [class.active]="!category" routerLink="/shop" class="nav-link" id="new-all-link"
+              data-toggle="tab" href="#new-all-tab" role="tab" aria-controls="new-all-tab" aria-selected="true">All</a>
+          </li>
+          <li class="nav-item" *ngFor="let cat of allcategories">
+            <a routerLink="/shop" [queryParams]="{ category: cat.title }" [class.active]="category === cat.title"
+              class="nav-link" id="new-cloth-link" data-toggle="tab" href="#new-cloth-tab" role="tab"
+              aria-controls="new-cloth-tab" aria-selected="false">{{ cat.title }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="products">
+    <div class="row justify-content-center">
+      <div class="col-6 col-md-4 col-lg-3" *ngFor="let prd of filteredProducts | filter:searchKey:'title'">
+        <div class="product product-2">
+          <figure class="product-media">
+       
+              <span *ngIf="prd.offer" class="product-label label-new">{{prd.offer|percent}} Sale</span>
+           
+            <a routerLink="/products/details/{{prd.id}}">
+              <img [src]="prd.image" alt="Product image" class="product-image" />
+              <img [src]="prd.image" alt="Product image" class="product-image-hover" />
+            </a>
+
+            <div class="product-action-vertical">
+              <a href="#" class="btn-product-icon btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
+            </div>
+            <!-- End .product-action -->
+
+      
+              <div *ngIf="prd.quantity > 0"  class="product-action product-action-transparent" >
+                <a (click)="addItemToBasket(prd)" class="btn-product btn-cart"><span>add to cart</span></a>
+              </div>
+          
+         
+            <div  *ngIf="prd.quantity<=0" class="product-action product-action-transparent">
+              <a (click)="outOfStock()" class="btn-product">
+                <span >Out of Stock</span>
+              </a>
+            </div>
+        
+            <!-- End .product-action -->
+          </figure>
+          <!-- End .product-media -->
+
+          <div class="product-body">
+            <div class="product-cat">
+              <a >{{ prd.category }}</a>
+            </div>
+            <!-- End .product-cat -->
+            <h3 class="product-title">
+              <a >{{ prd.title }}</a>
+            </h3>
+            <!-- End .product-title -->
+            <div class="product-price">{{ prd.price | currency }}</div>
+            <!-- End .product-price -->
+            <div class="product-nav product-nav-dots">
+              <a  class="active" style="background: #e5dcb1"><span class="sr-only">Color name</span></a>
+              <a  style="background: #b9cbd8"><span class="sr-only">Color name</span></a>
+            </div>
+            <!-- End .product-nav -->
+          </div>
+          <!-- End .product-body -->
+        </div>
+        <!-- End .product -->
+      </div>
+      <!-- End .col-sm-6 col-md-4 col-lg-3 -->
+    </div>
+    <!-- End .row -->
+  </div>
+</div>

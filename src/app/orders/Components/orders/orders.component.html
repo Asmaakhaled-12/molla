@@ -1,0 +1,24 @@
+<div class="container mt-10">
+  <div class="row">
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Email</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders" routerLink="details/{{order.id}}">
+          <ng-container *ngIf="order.status == 'Order Accepted'"><td style="color: rgb(20, 208, 57);">{{order.status}}</td></ng-container>
+          <ng-container *ngIf="order.status == 'Pending'"><td style="color:  rgb(109, 101, 54);">{{order.status}}</td></ng-container>
+          <ng-container *ngIf="order.status == 'Order Rejected'"><td style="color: Red;">{{order.status}}</td></ng-container>
+          <td>{{order.orderDate}}</td>
+          <td>{{order.buyerEmail}}</td>
+          <td>{{order.total}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

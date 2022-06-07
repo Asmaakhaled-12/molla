@@ -1,0 +1,14 @@
+.cartImg{
+  font-size:200px;
+  transform: translateX(340px);
+  margin-bottom: 30px;
+}
+h1{
+  font-weight: 600;
+}
+.mat-raised-button:hover{
+background-color: #DC3545;
+}
+
+
+

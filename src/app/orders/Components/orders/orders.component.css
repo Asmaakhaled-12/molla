@@ -1,0 +1,6 @@
+tr{
+  cursor: pointer;
+}
+tr,td{
+  padding: 12px;
+}

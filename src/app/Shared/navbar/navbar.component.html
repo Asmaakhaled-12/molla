@@ -1,0 +1,212 @@
+<header class="header bg-dark header-5">
+  <div class="header-middle sticky-header">
+    <div class="container-fluid">
+      <div class="header-left">
+        <button class="mobile-menu-toggler">
+          <span class="sr-only">Toggle mobile menu</span>
+          <i class="icon-bars"></i>
+        </button>
+
+        <a href="index.html" class="logo">
+          <img
+            src="assets/images/demos/demo-5/logo.png"
+            alt="Molla Logo"
+            width="105"
+            height="25"
+          />
+        </a>
+
+        <nav class="main-nav">
+          <ul class="menu">
+            <li class="active">
+              <a routerLink="home" class="">Home</a>
+            </li>
+            <ng-container *ngIf="! roleMatch('Admin')">
+            <li>
+              <a routerLink="shop" class="">Shop</a>
+            </li>
+             </ng-container>
+            <li>
+              <a routerLink="about" class="">About</a>
+            </li>
+            <li>
+              <a routerLink="contact" class="">Contact</a>
+            </li>
+            <ng-container *ngIf="roleMatch('Admin')">
+              <li>
+                <a routerLink="categories" class="">Categories</a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="roleMatch('Admin')">
+              <li>
+                <a routerLink="products" class="">Products</a>
+              </li>
+            </ng-container>
+            <ng-container *ngIf="roleMatch('Admin')">
+            <li><a routerLink="orderAdmin">Orders</a></li>
+            </ng-container>
+          </ul>
+          <!-- End .menu -->
+        </nav>
+        <!-- End .main-nav -->
+      </div>
+      <!-- End .header-left -->
+
+     
+      <div class="header-right">
+        <div class="dropdown d-flex loggggin">
+          <ul class="menu sf-arrows sf-js-enabled" style="touch-action: pan-y">
+            <li class="">
+              <ng-container *ngIf="(currentUser$ | async) === null">
+              <a href="blog.html" class="sf-with-ul">Account</a>
+              </ng-container>
+              <ng-container *ngIf="(currentUser$ | async) and roleMatch('User')">
+                <a href="blog.html" class="sf-with-ul">Hi {{UserName}}</a>
+              </ng-container>
+             
+              <ul style="display: none" class="mr-5 login-data">
+                <ng-container *ngIf="(currentUser$ | async) === null">
+                <li><a routerLink="login" routerLinkActive="active">Sign in</a></li>
+              </ng-container>
+              <ng-container *ngIf="(currentUser$ | async)">
+                <li><a routerLink="profile">Profile</a></li>
+               
+                <ng-container *ngIf="roleMatch('User')">
+                <li><a routerLink="orders">My Orders</a></li>
+                </ng-container>
+                <li><a (click)="logout()">Log out</a></li>
+              </ng-container>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <ng-container *ngIf="! roleMatch('Admin')">
+        <div class="dropdown cart-dropdown">
+          <a
+            href="#"
+            class="dropdown-toggle"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-display="static"
+          >
+
+            <i (click)="showItmsInBasket()"  class="icon-shopping-cart"></i>
+            <span *ngIf="(basket$|async) as basket" class="cart-count">{{basket.items.length}}</span>
+          </a>
+
+          <div *ngIf="(basket$|async) as basket" class="dropdown-menu dropdown-menu-right ">
+            <div class="dropdown-cart-products ">
+              <div *ngFor="let item of basket.items" class="product">
+                <div class="product-cart-details ">
+                  <h4 class="product-title">
+                    <a href="product.html"
+                      >{{item.title}}</a
+                    >
+                  </h4>
+
+                  <span class="cart-product-info">
+                    <span class="cart-product-qty">{{item.quantity}}</span>
+                    x {{item.price}}
+                  </span>
+                </div>
+                <!-- End .product-cart-details -->
+
+                <figure class="product-image-container">
+                  <a href="product.html" class="product-image">
+                    <img
+                      src="{{item.image}}"
+                      alt="product"
+                    />
+                  </a>
+                </figure>
+                <a href="#" class="btn-remove " title="Remove Product"
+                  ><i class="icon-close"></i
+                ></a>
+              </div>
+              <!-- End .product -->
+
+
+              <!-- End .product -->
+            </div>
+            <!-- End .cart-product -->
+
+            <div class="dropdown-cart-total">
+              <span>Total</span>
+
+              <span class="cart-total-price">{{basket.items|totalPrice|currency}}</span>
+            </div>
+            <!-- End .dropdown-cart-total -->
+
+            <div class="dropdown-cart-action">
+              <a routerLink="basket" class="btn btn-primary">View Cart</a>
+              
+              <a routerLink="checkout" class="btn btn-outline-primary-2"
+                ><span>Checkout</span><i class="icon-long-arrow-right"></i
+              ></a>
+            </div>
+            <!-- End .dropdown-cart-total -->
+          </div>
+          <!-- End .dropdown-menu -->
+        </div>
+      </ng-container>
+        <!-- End .cart-dropdown -->
+
+        <!-- End .header-right -->
+      </div>
+      <!-- End .container-fluid -->
+    </div>
+  </div>
+  <!-- End .header-middle -->
+</header>
+<!-- End .header -->
+
+<div class="mobile-menu-container mobile-menu-light pt-5">
+  <div class="mobile-menu-wrapper">
+      <span class="mobile-menu-close mt-1"><i class="icon-close"></i></span>
+
+      <form action="#" method="get" class="mobile-search ">
+          <label for="mobile-search" class="sr-only ">Search</label>
+          <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required="">
+          <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+      </form>
+
+      <nav class="mobile-nav">
+          <ul class="mobile-menu">
+              <li class="active">
+                  <a routerLink="/home">Home</a>
+
+
+              </li>
+              <li>
+                  <a routerLink="/about">About</a>
+
+              </li>
+
+
+              <li>
+                <a routerLink="contact" class="">Contact</a>
+
+              </li>
+              <li *ngIf="! roleMatch('Admin')">
+                <a routerLink="shop" class="">Shop</a>
+              </li>
+              <li *ngIf="roleMatch('Admin')">
+                <a routerLink="categories" class="">Categories</a>
+
+              </li>
+              <li *ngIf="roleMatch('Admin')">
+              <a routerLink="products" class="">Products</a>
+            </li>
+          </ul>
+      </nav><!-- End .mobile-nav -->
+
+      <div class="social-icons">
+          <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+          <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+          <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+          <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+      </div><!-- End .social-icons -->
+  </div><!-- End .mobile-menu-wrapper -->
+</div>

@@ -1,0 +1,103 @@
+<div class="container mt-10">
+
+    <!-- <table class="table table-hover">
+      <thead>
+       <tr>
+         <th>id</th>
+         <th>date</th>
+         <th>email</th>
+         <th>total</th>
+         <th>Status</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>{{order.id}}</th>
+          <th>{{order.orderDate}}</th>
+          <th>{{order.buyerEmail}}</th>
+          <th>{{order.total}}</th>
+          <th>{{order.status}}</th>
+        </tr>
+      </tbody>
+    </table> -->
+    <p style="font-size:40px;color: black;">
+     Order Details
+    </p>
+    <h3> Buyer Email : {{order.buyerEmail}}</h3>
+    <ng-container *ngIf="order.status == 'Pending'">
+        <h3 style="color: rgb(109, 101, 54); font-size: 25px;"> {{order.status}}
+      </h3></ng-container>
+      <ng-container *ngIf="order.status == 'Accepted'">
+        <h2 style="color: rgb(20, 208, 57); font-size: 25px;"> {{order.status}}
+      </h2></ng-container>
+      <ng-container *ngIf="order.status == 'Rejected'">
+        <h2 style="color: red; font-size: 25px;"> {{order.status}}
+      </h2></ng-container>
+      <h3> Delievry Method : {{order.deliveryMethod}}</h3>
+    <table class="table table-cart table-mobile">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+  
+      <tbody >
+        <tr *ngFor="let item of order.orderItems">
+          <td class="product-col">
+            <div class="product">
+              <figure class="product-media">
+                <a href="#">
+                  <img src="{{ item.image }}" alt="Product image" />
+                </a>
+              </figure>
+  
+            
+              <!-- End .product-title -->
+            </div>
+            <!-- End .product -->
+          </td>
+          
+            <td >{{ item.title }}</td>
+          
+          <td >{{ item.price | currency }}</td>
+          
+                <td >{{ item.quantity }}</td>
+                <!-- <input type="text" style="text-align: center" class="form-control" required=""
+                  placeholder="" value="{{ item.quantity }}" /> -->
+              
+           
+         
+          <td >
+            {{
+              item.price
+              | multiplication: item.quantity
+              | currency
+            }}
+          </td>
+        
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Order Total : {{order.orderItems| totalPriceIncludingShipping :selectedDeliveryMethod.price | currency }}</h2>
+
+
+
+    <button (click)="Accept(order.id)" class="btn btn-outline-success ">Accept Order</button>
+    <button (click)="Reject(order.id)" style="margin-left:20px"  class="btn btn-outline-danger ">Reject Order</button>
+    <br>
+    <br>
+
+  <div class='col-md-2'>
+    <a routerLink="/orderAdmin" class="btn  btn-success icon-long-arrow-left mb-5">back</a>
+  </div>
+  
+  
+  
+  </div>
+  

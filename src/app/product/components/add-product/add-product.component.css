@@ -1,0 +1,18 @@
+mat-form-field{
+  width: 100%;
+}
+
+.text-red{
+  color:#f44336;
+}
+
+.mat-form-field{
+  margin-top: 10px;
+}
+.mainBackColor{
+  background-color: #c66;
+}
+
+.mainTextColor{
+  color:#c66
+}

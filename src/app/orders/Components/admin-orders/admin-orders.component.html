@@ -1,0 +1,26 @@
+<div class="container mt-10">
+    <div class="row">
+      <table class="table table-striped text-center">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <!-- <th>Date</th> -->
+            <th>Email</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders" routerLink="AdminDetailsOrder/{{order.id}}">
+            <td>{{order.id}}</td>
+            <!-- <td>{{order.orderDate}}</td> -->
+            <td>{{order.buyerEmail}}</td>
+           
+            <td>{{order.total}}</td>
+            <td> <button (click)="Accept(order.id)" class="btn btn-success btn-sm">Accept</button></td>
+            <td><button (click)="Reject(order.id)" class="btn btn-danger btn-sm">Reject</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

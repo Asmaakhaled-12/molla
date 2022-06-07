@@ -1,0 +1,44 @@
+.Container{
+  width:70%;
+  margin:120px auto;
+}
+button:hover{
+background-color: #c66;
+color: white;
+}
+.example-full-width {
+  width: 100%;
+}
+.mat-form-field-infix{
+  background-color: white !important;
+  color: white !important;
+}
+.mat-form-field-label-wrapper{
+  background-color: white !important ;
+  color: white !important;
+}
+.mat-form-field-underline{
+  background-color: white !important ;
+  color: white !important;
+}
+table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+ background-color: #e9ecef
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}

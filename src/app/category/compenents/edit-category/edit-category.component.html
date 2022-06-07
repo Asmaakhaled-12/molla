@@ -1,0 +1,55 @@
+
+  <p mat-dialog-title class="">
+    <mat-icon matSuffix class="text-danger">edit_note</mat-icon>
+    Edit Your Category
+  </p>
+  <form class="my-4" [formGroup]="editCategoryForm">
+    <div class="form-group my-5">
+      <label >Title</label>
+      <input #titleInput class="form-control" formControlName="title"  [(ngModel)]='recivedCategory.title'/>
+      <div
+        *ngIf="
+          editCategoryForm.controls['title'].invalid &&
+          editCategoryForm.controls['title'].touched
+        "
+      >
+        <div
+          *ngIf="editCategoryForm.controls['title'].errors?.['pattern']"
+          class="alert alert-danger"
+        >
+          Enter Valid Cateogry Title
+        </div>
+        <div
+          *ngIf="editCategoryForm.controls['title'].errors?.['required']"
+          class="alert alert-danger"
+        >
+          Category Title is Required
+        </div>
+      </div>
+    </div>
+    <div class="form-group my-5">
+      <label>Description</label>
+      <input #descriptionInput class="form-control" formControlName="description"  [(ngModel)]='recivedCategory.description' />
+      <div *ngIf="
+       editCategoryForm.controls['description'].invalid &&
+       editCategoryForm.controls['description'].touched">
+        <div
+          *ngIf="editCategoryForm.controls['description'].errors?.['pattern']"
+          class="alert alert-danger"
+        >
+          Enter Valid Cateogry Discription
+        </div>
+        <div
+          *ngIf="editCategoryForm.controls['description'].errors?.['required']"
+          class="alert alert-danger"
+        >
+          Category Discripton is Required
+        </div>
+      </div>
+    </div>
+    <!-- <button [disabled]="editCategoryForm.invalid" type="submit" class="btn btn-danger">Edit</button> -->
+    <button [disabled]="editCategoryForm.invalid" mat-raised-button  [mat-dialog-close]="recivedCategory" class="mr-3 bg-info text-white">Edit</button>
+    <button mat-raised-button [mat-dialog-close]="false"  class="mb-3 bg-danger text-white">Close</button>
+
+  </form>
+

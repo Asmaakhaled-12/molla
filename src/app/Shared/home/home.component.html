@@ -1,0 +1,208 @@
+<main class="main">
+
+  <div class="intro-slider-container mb-0">
+
+    <div class="intro-slide" style="
+          background-image: url(assets/images/demos/demo-5/slider/slide-2.jpg);
+        ">
+      <div class="container intro-content text-center">
+        <h3 class="intro-subtitle text-white">Don’t Miss</h3>
+        <!-- End .h3 intro-subtitle -->
+        <h1 class="intro-title text-white">Mystery Deals</h1>
+        <!-- End .intro-title -->
+        <div class="intro-text text-white">Online Only</div>
+        <!-- End .intro-text -->
+        <a class="btn btn-primary">Discover NOW</a>
+      </div>
+      <!-- End .intro-content -->
+    </div>
+    <!-- End .intro-slide -->
+
+    <div class="intro-slide" style=" background-color: white;">
+
+      <!-- End .intro-content -->
+    </div>
+    <!-- End .intro-slide -->
+
+    <!-- End .intro-slider owl-carousel owl-theme -->
+
+
+    >
+    <!-- End .slider-loader -->
+  </div>
+  <!-- End .intro-slider-container -->
+
+  <div class="container mt-5">
+    <div class="banner-group pt-3">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="banner banner-border">
+            <a>
+              <img src="assets/images/demos/demo-5/banners/banner-1.jpg" alt="Banner" />
+            </a>
+
+            <div class="banner-content">
+              <h4 class="banner-subtitle">
+                <a>Trending now</a>
+              </h4>
+              <!-- End .banner-subtitle -->
+              <h3 class="banner-title">
+                <a><span>This Week's<br />Most Wanted</span></a>
+              </h3>
+              <!-- End .banner-title -->
+              <a class="btn btn-outline-primary-2 banner-link">Discover Now<i class="icon-long-arrow-right"></i></a>
+            </div>
+            <!-- End .banner-content -->
+          </div>
+          <!-- End .banner -->
+        </div>
+        <!-- End .col-md-6-->
+
+        <div class="col-md-6">
+          <div class="banner banner-border-hover">
+            <a>
+              <img src="assets/images/demos/demo-5/banners/banner-2.jpg" alt="Banner" />
+            </a>
+
+            <div class="banner-content">
+              <h4 class="banner-subtitle">
+                <a>Limited time only.</a>
+              </h4>
+              <!-- End .banner-subtitle -->
+              <h3 class="banner-title">
+                <a><span>Trainers & Sportwear<br />Sale Up to 70% off</span></a>
+              </h3>
+              <!-- End .banner-title -->
+              <a class="btn btn-outline-primary-2 banner-link">Shop Now<i class="icon-long-arrow-right"></i></a>
+            </div>
+            <!-- End .banner-content -->
+          </div>
+          <!-- End .banner -->
+
+          <div class="banner banner-border-hover">
+            <a>
+              <img src="assets/images/demos/demo-5/banners/banner-3.jpg" alt="Banner" />
+            </a>
+
+            <div class="banner-content">
+              <h4 class="banner-subtitle">
+                <a>This week we love...</a>
+              </h4>
+              <!-- End .banner-subtitle -->
+              <h3 class="banner-title">
+                <a><span>Womens <br />Holiday Clothes</span></a>
+              </h3>
+              <!-- End .banner-title -->
+              <a class="btn btn-outline-primary-2 banner-link">Discover Now<i class="icon-long-arrow-right"></i></a>
+            </div>
+            <!-- End .banner-content -->
+          </div>
+          <!-- End .banner -->
+        </div>
+        <!-- End .col-md-6 -->
+      </div>
+      <!-- End .row -->
+    </div>
+    <!-- End .banner-group -->
+  </div>
+  <!-- End .container -->
+
+  <div class="mb-4"></div>
+  <!-- End .mb-6 -->
+
+  <div class="mb-5"></div>
+  <!-- End .mb-5 -->
+
+  <!-- End .video-banner bg-image -->
+
+
+  <!-- End .container -->
+  <div class="container mt-6">
+    <div class="container mt-10">
+      <div class="heading heading-center mb-3">
+        <!-- <h2 class="title">Categories</h2> -->
+
+        <ul class="nav nav-pills justify-content-center" role="tablist">
+          <li class="nav-item">
+            <a (click)="getAllProducts()" [class.active]="!category" routerLink="/" class="nav-link" id="new-all-link"
+              data-toggle="tab" href="#new-all-tab" role="tab" aria-controls="new-all-tab" aria-selected="true">All</a>
+          </li>
+          <li class="nav-item" *ngFor="let cat of allcategories">
+            <a routerLink="/" [queryParams]="{category:cat.title}" [class.active]="category === cat.title"
+              class="nav-link" id="new-cloth-link" data-toggle="tab" href="#new-cloth-tab" role="tab"
+              aria-controls="new-cloth-tab" aria-selected="false">{{cat.title}}</a>
+
+
+        </ul>
+      </div>
+    
+      <div class="products">
+        <div class="row justify-content-center">
+          <div class="col-6 col-md-4 col-lg-3" *ngFor="let prd of filteredProducts">
+            <div class="product product-2" >
+              <figure class="product-media">
+                <ng-container *ngIf="prd.offer">
+                  <span class="product-label label-new">{{prd.offer|percent}} Sale</span>
+                </ng-container>
+
+                <a routerLink="/products/details/{{prd.id}}">
+                  <img  [src]="prd.image" alt="Product image" class="product-image" />
+                  <img [src]="prd.image" alt="Product image" class="product-image-hover" />
+                </a>
+
+                <div class="product-action-vertical">
+                  <a [routerLink]="['/products/details',prd.id]" class="btn-product-icon btn-wishlist" title="Add to wishlist"><span>add to
+                      wishlist</span></a>
+                </div>
+                <!-- End .product-action -->
+                <ng-container *ngIf="! roleMatch('Admin') and prd.quantity > 0">
+                <div class="product-action product-action-transparent">
+                  <a (click)="addItemToBasket(prd)" class="btn-product btn-cart"><span>add to cart</span></a>
+                </div>
+                </ng-container>
+
+              
+            
+                <!-- End .product-action -->
+              </figure>
+              <!-- End .product-media -->
+
+              <div class="product-body">
+                <div class="product-cat">
+                  <a routerLink="#">{{ prd.category }}</a>
+                </div>
+                <!-- End .product-cat -->
+                <h3 class="product-title">
+                  <a routerLink="#">{{ prd.title }}</a>
+                </h3>
+                <!-- End .product-title -->
+                <div class="product-price">{{ prd.price |currency}}</div>
+                <!-- End .product-price -->
+                <div class="product-nav product-nav-dots">
+                  <a routerLink="#" class="active" style="background: #e5dcb1"><span class="sr-only">Color
+                      name</span></a>
+                  <a routerLink="#" style="background: #b9cbd8"><span class="sr-only">Color name</span></a>
+                </div>
+                <!-- End .product-nav -->
+              </div>
+              <!-- End .product-body -->
+            </div>
+            <!-- End .product -->
+          </div>
+          <!-- End .col-sm-6 col-md-4 col-lg-3 -->
+        </div>
+        <!-- End .row -->
+      </div>
+
+      <div class="more-container text-center mt-1 mb-3">
+        <a routerLink="/shop" class="btn btn-outline-primary-2 btn-round btn-more">Load more</a>
+      </div><!-- End .more-container -->
+
+    </div>
+
+  </div>
+  <div class="mb-2"></div>
+  <!-- End .mb-2 -->
+</main>
+
+<button id="scroll-top" title="Back to Top" class=""><i class="icon-arrow-up"></i></button>

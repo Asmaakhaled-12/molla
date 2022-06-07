@@ -1,0 +1,46 @@
+<div class="Container">
+  <button mat-raised-button (click)="addCategory()" color="" class="mb-3 float-right">Add New Category
+    <mat-icon matSuffix>add_circle</mat-icon>
+  </button>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Search By ID or Title or Discription</mat-label>
+  <input matInput placeholder="Ex. Shirts"  (keyup)="applyFilter($event)">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" >
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon class="text-info mr-3" (click)="edit(element)">edit</mat-icon>
+          <mat-icon class="text-primary" (click)="delete(element.id)">delete</mat-icon>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator class="bg-primary text-white" #MatPaginator [length]="100" [pageSizeOptions]="[4, 10, 15]" aria-label="Select page">
+  </mat-paginator>
+</div>
+</div>

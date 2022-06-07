@@ -1,0 +1,17 @@
+<div class="container">
+  <!-- <a (click)="submitOrder()">Submit Order</a> -->
+
+
+  <div *ngIf="!paidFor">
+
+  </div>
+
+  <div *ngIf=paidFor>
+    <h1>Payment Successfully</h1>
+  </div>
+
+
+  <div [hidden]="paidFor" #paypal></div>
+
+</div>
+
